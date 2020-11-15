@@ -1,0 +1,1 @@
+osmfilter mapa_karposh.osm --keep="shop=supermarket" | osmconvert64-0.8.8p.exe - --all-to-nodes --csv="@id @lon @lat name addr:street addr:housenumber addr:city addr:country opening_hours website phone" --csv-headline --csv-separator=", " -o=supermarkets_karposh.csv
