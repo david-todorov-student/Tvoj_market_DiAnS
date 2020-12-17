@@ -2,12 +2,14 @@ package mk.ukim.finki.dians.tvoj_market.service.implementations;
 
 import mk.ukim.finki.dians.tvoj_market.model.Market;
 import mk.ukim.finki.dians.tvoj_market.model.OpeningHours;
+import mk.ukim.finki.dians.tvoj_market.model.exceptions.MarketIdDoesNotExistException;
+import mk.ukim.finki.dians.tvoj_market.model.exceptions.MarketNameDoesNotExistException;
+import mk.ukim.finki.dians.tvoj_market.model.exceptions.NoMarketsAreOpenException;
 import mk.ukim.finki.dians.tvoj_market.repository.InMemoryMarketRepository;
 import mk.ukim.finki.dians.tvoj_market.service.MarketService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class MarketServiceImpl implements MarketService {
@@ -23,13 +25,21 @@ public class MarketServiceImpl implements MarketService {
     }
 
     @Override
-    public Optional<Market> findById(Long id) {
-        return this.inMemoryMarketRepository.findById(id);
+    public Market findById(Long id) {
+        Market market = this.inMemoryMarketRepository.findById(id).orElse(null);
+        if (market != null) {
+            return market;
+        } else throw new MarketIdDoesNotExistException(id);
     }
 
     @Override
-    public Optional<List<Market>> findByName(String name) {
-        return this.inMemoryMarketRepository.findByName(name);
+    public List<Market> findByName(String name) {
+        List<Market> markets = this.inMemoryMarketRepository.findByName(name);
+
+        if (!markets.isEmpty()) {
+            return markets;
+        } else
+            throw new MarketNameDoesNotExistException(name);
     }
 
     @Override
@@ -38,12 +48,12 @@ public class MarketServiceImpl implements MarketService {
     }
 
     @Override
-    public Optional<Market> save(double longitude, double latitude, String name, String address, OpeningHours openingHours, String webSite) {
-        return this.inMemoryMarketRepository.save(longitude,latitude,name,address,openingHours,webSite);
+    public Market save(double longitude, double latitude, String name, String address, OpeningHours openingHours, String webSite, String phoneNumber) {
+        return this.inMemoryMarketRepository.save(longitude, latitude, name, address, openingHours, webSite, phoneNumber);
     }
 
     @Override
-    public Optional<List<Market>> findOpened() {
-        return this.inMemoryMarketRepository.findOpened();
+    public List<Market> findOpened() {
+        return this.inMemoryMarketRepository.findOpened().orElseThrow(NoMarketsAreOpenException::new);
     }
 }

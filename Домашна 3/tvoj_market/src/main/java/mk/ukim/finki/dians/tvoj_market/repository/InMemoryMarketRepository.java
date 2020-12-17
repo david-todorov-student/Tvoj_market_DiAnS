@@ -5,7 +5,6 @@ import mk.ukim.finki.dians.tvoj_market.bootstrap.DataHolder;
 import mk.ukim.finki.dians.tvoj_market.model.Market;
 import mk.ukim.finki.dians.tvoj_market.model.OpeningHours;
 import org.springframework.stereotype.Repository;
-import org.yaml.snakeyaml.error.Mark;
 
 import java.time.LocalTime;
 import java.util.List;
@@ -22,8 +21,10 @@ public class InMemoryMarketRepository {
         return DataHolder.markets.stream().filter(i -> i.getId().equals(id)).findFirst();
     }
 
-    public Optional<List<Market>> findByName(String name) {
-        return Optional.of(DataHolder.markets.stream().filter(i -> i.getName().equals(name)).collect(Collectors.toList()));
+    public List<Market> findByName(String name) {
+        return DataHolder.markets.stream()
+                .filter(market -> market.getName().equals(name))
+                .collect(Collectors.toList());
     }
 
 
@@ -32,16 +33,18 @@ public class InMemoryMarketRepository {
     }
 
 
-    public Optional<Market> save(double longitude, double latitude, String name, String address, OpeningHours openingHours, String webSite) {
-        DataHolder.markets.removeIf(i -> i.getLongitude() == longitude && i.getLatitude() == latitude);
-        Market market = new Market(longitude, latitude, name, address, openingHours, webSite);
+    public Market save(double longitude, double latitude, String name, String address, OpeningHours openingHours, String webSite, String phoneNumber) {
+        DataHolder.markets.removeIf(market -> market.getLongitude() == longitude && market.getLatitude() == latitude);
+        Market market = new Market(longitude, latitude, name, address, openingHours, webSite, phoneNumber);
         DataHolder.markets.add(market);
-        return Optional.of(market);
+        return market;
     }
 
     public Optional<List<Market>> findOpened() {
-        return Optional.of(DataHolder.markets.stream().filter(i -> i.getOpeningHours().getStart().isBefore(LocalTime.now()))
-                .filter(i -> i.getOpeningHours().getEnd().isAfter(LocalTime.now())).collect(Collectors.toList()));
+        return Optional.of(DataHolder.markets.stream()
+                .filter(market -> market.getOpeningHours().getStart().isBefore(LocalTime.now())
+                        && market.getOpeningHours().getEnd().isAfter(LocalTime.now()))
+                .collect(Collectors.toList()));
     }
 
 

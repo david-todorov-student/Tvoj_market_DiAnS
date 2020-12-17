@@ -23,7 +23,8 @@ public class DataHolder {
 
         users.add(new User("andrej.s", "as", "Andrej", "Skenderski"));
         markets.add(new Market(21.3922837, 42.0048803, "Ramstore", "Љубљанска Skopje",
-                new OpeningHours(LocalTime.parse("08:00"), LocalTime.parse("22:00")), "http://ramstore.com.mk"));
+                new OpeningHours(LocalTime.parse("08:00"), LocalTime.parse("22:00")), "http://ramstore.com.mk",
+                "070/000-111"));
 
 
     }

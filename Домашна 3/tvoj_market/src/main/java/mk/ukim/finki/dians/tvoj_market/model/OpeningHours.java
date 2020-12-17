@@ -16,4 +16,8 @@ public class OpeningHours {
         this.end = end;
     }
 
+    @Override
+    public String toString() {
+        return String.format("%02d:%02d - %02d:%02d", start.getHour(), start.getMinute(), end.getHour(), end.getMinute());
+    }
 }
