@@ -1,8 +1,12 @@
 package mk.ukim.finki.dians.tvoj_market.web.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import mk.ukim.finki.dians.tvoj_market.model.Market;
 import mk.ukim.finki.dians.tvoj_market.model.OpeningHours;
 import mk.ukim.finki.dians.tvoj_market.service.MarketService;
+import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -33,8 +37,20 @@ public class MarketController {
         return "master-template";
     }
 
+    @GetMapping("/confirm-delete/{id}")
+    public String getDeleteConfirmPage(@PathVariable Long id, Model model){
+        try {
+            Market market = this.marketService.findById(id);
+            model.addAttribute("market", market);
+            model.addAttribute("bodyContent", "confirm-delete");
+            return "master-template";
+//            return "confirm-delete";
+        } catch (RuntimeException e) {
+            return "redirect:/markets?error=" + e.getMessage();
+        }
+    }
 
-    @DeleteMapping("/delete/{id}")
+    @PostMapping("/delete/{id}")
     public String deleteMarket(@PathVariable Long id) {
         this.marketService.deleteById(id);
         return "redirect:/markets";
@@ -45,9 +61,8 @@ public class MarketController {
         try {
             Market market = this.marketService.findById(id);
             model.addAttribute("market", market);
-//            model.addAttribute("bodyContent", "add-market");
-//            return "master-template";
-            return "add-market";
+            model.addAttribute("bodyContent", "add-market");
+            return "master-template";
         } catch (RuntimeException e) {
             return "redirect:/markets?error=" + e.getMessage();
         }
@@ -78,4 +93,18 @@ public class MarketController {
         return "redirect:/markets";
     }
 
+    @GetMapping("/details-form/{id}")
+    public String getDetailsPage(@PathVariable Long id, Model model){
+        try {
+            Market market = this.marketService.findById(id);
+            model.addAttribute("longitude", market.getLongitude());
+            model.addAttribute("latitude", market.getLatitude());
+            model.addAttribute("market", market);
+            model.addAttribute("bodyContent", "details");
+            return "master-template";
+//            return "details";
+        } catch (RuntimeException e) {
+            return "redirect:/markets?error=" + e.getMessage();
+        }
+    }
 }
