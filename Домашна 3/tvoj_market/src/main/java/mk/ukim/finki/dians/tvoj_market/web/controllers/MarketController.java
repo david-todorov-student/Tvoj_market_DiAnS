@@ -25,7 +25,7 @@ public class MarketController {
         List<Market> markets = marketService.findAll();
         if (error != null && !error.isEmpty()) {
             if (error.contains("No markets are open at this time.")) {
-                markets.clear();
+                markets = new ArrayList<>();
             }
             model.addAttribute("hasError", true);
             model.addAttribute("error", error);
