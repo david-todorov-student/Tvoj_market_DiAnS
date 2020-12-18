@@ -1,4 +1,4 @@
-package mk.ukim.finki.dians.tvoj_market.repository;
+package mk.ukim.finki.dians.tvoj_market.repository.inmemory;
 
 
 import mk.ukim.finki.dians.tvoj_market.bootstrap.DataHolder;

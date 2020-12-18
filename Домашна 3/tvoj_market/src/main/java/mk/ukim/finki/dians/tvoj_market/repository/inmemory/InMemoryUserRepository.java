@@ -1,4 +1,4 @@
-package mk.ukim.finki.dians.tvoj_market.repository;
+package mk.ukim.finki.dians.tvoj_market.repository.inmemory;
 
 import mk.ukim.finki.dians.tvoj_market.bootstrap.DataHolder;
 import mk.ukim.finki.dians.tvoj_market.model.User;
@@ -24,8 +24,5 @@ public class InMemoryUserRepository {
     public void delete(String username) {
         DataHolder.users.removeIf(r->r.getUsername().equals(username));
     }
-
-
-
 
 }

@@ -5,7 +5,7 @@ import mk.ukim.finki.dians.tvoj_market.model.OpeningHours;
 import mk.ukim.finki.dians.tvoj_market.model.exceptions.MarketIdDoesNotExistException;
 import mk.ukim.finki.dians.tvoj_market.model.exceptions.MarketNameDoesNotExistException;
 import mk.ukim.finki.dians.tvoj_market.model.exceptions.NoMarketsAreOpenException;
-import mk.ukim.finki.dians.tvoj_market.repository.InMemoryMarketRepository;
+import mk.ukim.finki.dians.tvoj_market.repository.inmemory.InMemoryMarketRepository;
 import mk.ukim.finki.dians.tvoj_market.service.MarketService;
 import org.springframework.stereotype.Service;
 

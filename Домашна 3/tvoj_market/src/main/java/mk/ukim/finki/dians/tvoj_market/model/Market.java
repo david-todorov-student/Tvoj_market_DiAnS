@@ -5,17 +5,32 @@ import lombok.Data;
 import lombok.NonNull;
 import org.aspectj.apache.bcel.classfile.Module;
 
+import javax.persistence.*;
 import java.time.ZonedDateTime;
 
 @Data
+@Entity
 public class Market {
-    @NonNull private Long id;
-    @NonNull private double longitude;
-    @NonNull private double latitude;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NonNull
+    private Long id;
+
+    @NonNull
+    private double longitude;
+
+    @NonNull
+    private double latitude;
+
     private String name;
+
     private String address;
+
+    @OneToOne
     private OpeningHours openingHours;
+
     private String webSite;
+
     private String phoneNumber;
 
     public Market() {

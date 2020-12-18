@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import mk.ukim.finki.dians.tvoj_market.model.Market;
 import mk.ukim.finki.dians.tvoj_market.model.OpeningHours;
+import mk.ukim.finki.dians.tvoj_market.model.exceptions.NoMarketsAreOpenException;
 import mk.ukim.finki.dians.tvoj_market.service.MarketService;
 import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.stereotype.Controller;
@@ -37,8 +38,23 @@ public class MarketController {
         return "master-template";
     }
 
+    @GetMapping("/opened")
+    public String getOpenMarkets(Model model) {
+        try {
+            List<Market> opened = this.marketService.findOpened();
+            if (opened.isEmpty())
+                throw new NoMarketsAreOpenException();
+            model.addAttribute("markets", opened);
+            model.addAttribute("bodyContent", "markets");
+            return "master-template";
+
+        } catch (RuntimeException e) {
+            return "redirect:/markets?error=" + e.getMessage();
+        }
+    }
+
     @GetMapping("/confirm-delete/{id}")
-    public String getDeleteConfirmPage(@PathVariable Long id, Model model){
+    public String getDeleteConfirmPage(@PathVariable Long id, Model model) {
         try {
             Market market = this.marketService.findById(id);
             model.addAttribute("market", market);
@@ -94,7 +110,7 @@ public class MarketController {
     }
 
     @GetMapping("/details-form/{id}")
-    public String getDetailsPage(@PathVariable Long id, Model model){
+    public String getDetailsPage(@PathVariable Long id, Model model) {
         try {
             Market market = this.marketService.findById(id);
             model.addAttribute("longitude", market.getLongitude());
