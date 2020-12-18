@@ -72,7 +72,7 @@
                                    class="form-control"
                                    id="opening"
                                    name="opening"
-                                   th:value="(${market} != null ? ${market.getOpeningHours().getStart()} : '')"
+                                   th:value="(${market} != null ? ${market.getOpeningHour().toString()} : '')"
                                    required
                                    placeholder="Enter market opening hours">
                         </div>
@@ -82,7 +82,7 @@
                                    class="form-control"
                                    id="closing"
                                    name="closing"
-                                   th:value="(${market} != null ? ${market.getOpeningHours().getEnd()} : '')"
+                                   th:value="(${market} != null ? ${market.getClosingHour().toString()} : '')"
                                    required
                                    placeholder="Enter market closing hours">
                         </div>

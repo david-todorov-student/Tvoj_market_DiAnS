@@ -1,11 +1,10 @@
 package mk.ukim.finki.dians.tvoj_market.service.implementations;
 
 import mk.ukim.finki.dians.tvoj_market.model.Market;
-import mk.ukim.finki.dians.tvoj_market.model.OpeningHours;
 import mk.ukim.finki.dians.tvoj_market.model.exceptions.MarketIdDoesNotExistException;
 import mk.ukim.finki.dians.tvoj_market.model.exceptions.MarketNameDoesNotExistException;
 import mk.ukim.finki.dians.tvoj_market.model.exceptions.NoMarketsAreOpenException;
-import mk.ukim.finki.dians.tvoj_market.repository.InMemoryMarketRepository;
+import mk.ukim.finki.dians.tvoj_market.repository.inmemory.InMemoryMarketRepository;
 import mk.ukim.finki.dians.tvoj_market.service.MarketService;
 import org.springframework.stereotype.Service;
 
@@ -48,8 +47,8 @@ public class MarketServiceImpl implements MarketService {
     }
 
     @Override
-    public Market save(double longitude, double latitude, String name, String address, OpeningHours openingHours, String webSite, String phoneNumber) {
-        return this.inMemoryMarketRepository.save(longitude, latitude, name, address, openingHours, webSite, phoneNumber);
+    public Market save(double longitude, double latitude, String name, String address, String openingHours, String webSite, String phoneNumber) {
+            return this.inMemoryMarketRepository.save(longitude, latitude, name, address, openingHours, webSite, phoneNumber);
     }
 
     @Override

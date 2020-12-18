@@ -1,17 +1,12 @@
 package mk.ukim.finki.dians.tvoj_market.web.controllers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
 import mk.ukim.finki.dians.tvoj_market.model.Market;
-import mk.ukim.finki.dians.tvoj_market.model.OpeningHours;
+import mk.ukim.finki.dians.tvoj_market.model.exceptions.NoMarketsAreOpenException;
 import mk.ukim.finki.dians.tvoj_market.service.MarketService;
-import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalTime;
 import java.util.List;
 
 @Controller
@@ -37,8 +32,23 @@ public class MarketController {
         return "master-template";
     }
 
+    @GetMapping("/opened")
+    public String getOpenMarkets(Model model) {
+        try {
+            List<Market> opened = this.marketService.findOpened();
+            if (opened.isEmpty())
+                throw new NoMarketsAreOpenException();
+            model.addAttribute("markets", opened);
+            model.addAttribute("bodyContent", "markets");
+            return "master-template";
+
+        } catch (RuntimeException e) {
+            return "redirect:/markets?error=" + e.getMessage();
+        }
+    }
+
     @GetMapping("/confirm-delete/{id}")
-    public String getDeleteConfirmPage(@PathVariable Long id, Model model){
+    public String getDeleteConfirmPage(@PathVariable Long id, Model model) {
         try {
             Market market = this.marketService.findById(id);
             model.addAttribute("market", market);
@@ -85,7 +95,7 @@ public class MarketController {
                              @RequestParam(required = false) String phoneNumber
     ) {
         if (opening != null && !opening.isEmpty() && closing != null && !closing.isEmpty()) {
-            OpeningHours hours = new OpeningHours(LocalTime.parse(opening), LocalTime.parse(closing));
+            String hours = String.format("%s-%s", opening, closing);
             this.marketService.save(longitude, latitude, name, address, hours, website, phoneNumber);
         } else
             this.marketService.save(longitude, latitude, name, address, null, website, phoneNumber);
@@ -94,7 +104,7 @@ public class MarketController {
     }
 
     @GetMapping("/details-form/{id}")
-    public String getDetailsPage(@PathVariable Long id, Model model){
+    public String getDetailsPage(@PathVariable Long id, Model model) {
         try {
             Market market = this.marketService.findById(id);
             model.addAttribute("longitude", market.getLongitude());
