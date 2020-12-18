@@ -2,6 +2,8 @@ package mk.ukim.finki.dians.tvoj_market.web.filters;
 
 import mk.ukim.finki.dians.tvoj_market.model.User;
 
+import org.springframework.context.annotation.Profile;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;

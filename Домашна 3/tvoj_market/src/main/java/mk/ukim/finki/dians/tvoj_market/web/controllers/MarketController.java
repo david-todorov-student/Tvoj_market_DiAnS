@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -21,11 +22,14 @@ public class MarketController {
 
     @GetMapping
     public String getMarketsPage(@RequestParam(required = false) String error, Model model) {
+        List<Market> markets = marketService.findAll();
         if (error != null && !error.isEmpty()) {
+            if (error.contains("No markets are open at this time.")) {
+                markets.clear();
+            }
             model.addAttribute("hasError", true);
             model.addAttribute("error", error);
         }
-        List<Market> markets = marketService.findAll();
         model.addAttribute("markets", markets);
         model.addAttribute("bodyContent", "markets");
 //        return "markets";
@@ -34,15 +38,16 @@ public class MarketController {
 
     @GetMapping("/opened")
     public String getOpenMarkets(Model model) {
+        List<Market> opened = new ArrayList<>();
         try {
-            List<Market> opened = this.marketService.findOpened();
+            opened = this.marketService.findOpened();
             if (opened.isEmpty())
                 throw new NoMarketsAreOpenException();
-            model.addAttribute("markets", opened);
             model.addAttribute("bodyContent", "markets");
             return "master-template";
 
         } catch (RuntimeException e) {
+            model.addAttribute("markets", opened);
             return "redirect:/markets?error=" + e.getMessage();
         }
     }

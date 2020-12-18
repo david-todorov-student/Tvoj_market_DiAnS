@@ -22,8 +22,7 @@ public class DataHolder {
         users.add(new User("david.t", "dt", "David", "Todorov"));
         users.add(new User("andrej.s", "as", "Andrej", "Skenderski"));
 
-        markets.add(new Market(21.3922837, 42.0048803, "Ramstore", "Љубљанска Skopje", "08:00-22:00", "http://ramstore.com.mk",
-                "070/000-111"));
+        markets.add(new Market(21.3922837, 42.0048803, "Ramstore", "Љубљанска Skopje", "08:00-22:00", "http://ramstore.com.mk","070/000-111"));
 
 
     }

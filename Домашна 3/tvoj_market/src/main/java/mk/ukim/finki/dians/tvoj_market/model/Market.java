@@ -3,17 +3,15 @@ package mk.ukim.finki.dians.tvoj_market.model;
 
 import lombok.Data;
 import lombok.NonNull;
-import org.aspectj.apache.bcel.classfile.Module;
 
 import javax.persistence.*;
 import java.time.LocalTime;
-import java.time.ZonedDateTime;
 
 @Data
 @Entity
 public class Market {
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NonNull
     private Long id;
 
