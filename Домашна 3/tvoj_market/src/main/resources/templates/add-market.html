@@ -1,3 +1,6 @@
+
+<link rel="stylesheet" href="../static/Add-market.css">
+<meta charset="UTF-8">
 <!--<!DOCTYPE html>-->
 <!--<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">-->
 <!--<head>-->
@@ -13,31 +16,22 @@
 
 <!--<section th:include="${bodyContent}">-->
 <!--</section>-->
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <div xmlns:th="http://www.thymeleaf.org">
-    <th:block >
+    <th:block>
         <section class="jumbotron text-center">
             <div class="container">
-                <h1 class="jumbotron-heading">Твој Маркет</h1>
+                <h1 class="jumbotron-heading">Create.</h1>
+                <h2>Market</h2>
             </div>
         </section>
 
-        <div class="container">
+        <div class="container1">
             <div class="row">
                 <div class="col-md-5">
                     <form action="/markets/add" method="POST">
                         <div class="form-group">
-<!--                            <label for="id">Id: </label>-->
-                            <input type="text"
-                                   class="form-control"
-                                   id="id"
-                                   hidden="hidden"
-                                   name="id"
-                                   th:value="(${market} != null ? ${market.getId} : '')"
-                                   placeholder="Enter market id">
-                        </div>
-                        <div class="form-group">
-                            <label for="lat">Latitude: </label>
+                            <label for="lat"><b>Latitude: </b></label>
                             <input type="text"
                                    class="form-control"
                                    id="lat"
@@ -45,9 +39,9 @@
                                    th:value="(${market} != null ? ${market.getLatitude()} : '')"
                                    required
                                    placeholder="Enter market latitude">
-                        </div>
+                        </div><br>
                         <div class="form-group">
-                            <label for="long">Longitude: </label>
+                            <label for="long"><b>Longitude: </b></label>
                             <input type="text"
                                    class="form-control"
                                    id="long"
@@ -55,9 +49,9 @@
                                    th:value="(${market} != null ? ${market.getLongitude()} : '')"
                                    required
                                    placeholder="Enter market longitude">
-                        </div>
+                        </div><br>
                         <div class="form-group">
-                            <label for="name">Market name</label>
+                            <label for="name"><b>Market name</b></label>
                             <input type="text"
                                    class="form-control"
                                    id="name"
@@ -65,9 +59,9 @@
                                    th:value="(${market} != null ? ${market.getName()} : '')"
                                    required
                                    placeholder="Enter market name">
-                        </div>
+                        </div><br>
                         <div class="form-group">
-                            <label for="address">Address: </label>
+                            <label for="address"><b>Address: </b></label>
                             <input type="text"
                                    class="form-control"
                                    id="address"
@@ -75,29 +69,29 @@
                                    th:value="(${market} != null ? ${market.getAddress()} : '')"
                                    required
                                    placeholder="Enter market address">
-                        </div>
+                        </div><br>
                         <div class="form-group">
-                            <label for="opening">Opening hours: </label>
+                            <label for="opening"><b>Opening hours: </b></label>
                             <input type="time"
                                    class="form-control"
                                    id="opening"
                                    name="opening"
-                                   th:value="(${market} != null ? ${market.getOpeningHour().toString()} : '')"
+                                   th:value="(${market} != null ? ${market.getOpeningHours().getStart()} : '')"
                                    required
                                    placeholder="Enter market opening hours">
-                        </div>
+                        </div><br>
                         <div class="form-group">
-                            <label for="closing">Closing hours: </label>
+                            <label for="closing"><b>Closing hours: </b></label>
                             <input type="time"
                                    class="form-control"
                                    id="closing"
                                    name="closing"
-                                   th:value="(${market} != null ? ${market.getClosingHour().toString()} : '')"
+                                   th:value="(${market} != null ? ${market.getOpeningHours().getEnd()} : '')"
                                    required
                                    placeholder="Enter market closing hours">
-                        </div>
+                        </div><br>
                         <div class="form-group">
-                            <label for="website">Website: </label>
+                            <label for="website"><b>Website: </b></label>
                             <input type="text"
                                    class="form-control"
                                    id="website"
@@ -105,9 +99,9 @@
                                    th:value="(${market} != null ? ${market.getWebSite()} : '')"
                                    required
                                    placeholder="Enter market website">
-                        </div>
+                        </div><br>
                         <div class="form-group">
-                            <label for="phone">Phone Number: </label>
+                            <label for="phone"><b>Phone Number: </b></label>
                             <input type="text"
                                    class="form-control"
                                    id="phone"
@@ -115,10 +109,10 @@
                                    th:value="(${market} != null ? ${market.getPhoneNumber()} : '')"
                                    required
                                    placeholder="Enter market phone number">
-                        </div>
+                        </div><br>
 
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                        <a type="button" class="btn btn-primary" href="/markets">Back</a>
+                        <button type="submit" class="btn btn-primary">Create</button>
+                        <a type="button" class="btn btn-primary" href="/markets">Back to the list</a>
                     </form>
                 </div>
             </div>

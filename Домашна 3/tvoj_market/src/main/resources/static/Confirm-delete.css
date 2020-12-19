@@ -1,0 +1,66 @@
+.container{
+    background-image: url("app background.jpg");
+    background-repeat: no-repeat;
+    height: 800px;
+}
+#roww{
+    background: whitesmoke;
+    opacity: 0.7;
+    height: 400px;
+    width: 1200px;
+    margin: auto;
+    padding-top: 100px;
+    position: relative;
+    top:140px;
+    border-radius: 40px;
+}
+h1{
+    font-family: Arial;
+    font-size: 35px;
+    color: #204d74;
+    border-bottom: gray 2px solid;
+    padding-bottom: 25px;
+    position: relative;
+    top:-100px;
+    padding-left: 25px;
+}
+h2{
+    font-size:20px;
+    color:#204d74;
+    position: relative;
+    bottom:160px;
+    left:27px;
+}
+.dl-horizontal{
+    position: relative;
+    left:420px;
+    bottom:90px;
+}
+h3{
+    position: relative;
+    left:400px;
+    color: #204d74;
+    bottom: 100px;
+}
+.row{
+    color: #204d74;
+}
+button{
+    color: #2e6da4;
+    padding: 5px;
+    border-radius: 5px;
+    background:lightgray;
+    position:relative;
+    left:-5px;
+    position: absolute;
+    left:600px;
+    bottom:130px;
+}
+a{
+    position: absolute;
+    left:450px;
+    bottom:135px;
+    color: #204d74;
+    text-decoration: none;
+}
+
