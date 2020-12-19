@@ -3,14 +3,15 @@ package mk.ukim.finki.dians.tvoj_market.service.implementations;
 import mk.ukim.finki.dians.tvoj_market.model.User;
 import mk.ukim.finki.dians.tvoj_market.model.exceptions.UserAlreadyExistsException;
 import mk.ukim.finki.dians.tvoj_market.repository.inmemory.InMemoryUserRepository;
+import mk.ukim.finki.dians.tvoj_market.repository.jpa.UserRepository;
 import mk.ukim.finki.dians.tvoj_market.service.UserService;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
-    private final InMemoryUserRepository userRepository;
+    private final UserRepository userRepository;
 
-    public UserServiceImpl(InMemoryUserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -20,7 +21,7 @@ public class UserServiceImpl implements UserService {
             throw new UserAlreadyExistsException(username);
         } else {
             User newUser = new User(username, password, name, surname);
-            return this.userRepository.saveOrUpdate(newUser);
+            return this.userRepository.save(newUser);
         }
     }
 }

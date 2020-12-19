@@ -44,6 +44,7 @@ public class MarketController {
             if (opened.isEmpty())
                 throw new NoMarketsAreOpenException();
             model.addAttribute("bodyContent", "markets");
+            model.addAttribute("markets", opened);
             return "master-template";
 
         } catch (RuntimeException e) {
@@ -90,20 +91,21 @@ public class MarketController {
     }
 
     @PostMapping("/add")
-    public String saveMarket(@RequestParam Double latitude,
+    public String saveMarket(@RequestParam(required = false) Long id,
+                             @RequestParam Double latitude,
                              @RequestParam Double longitude,
                              @RequestParam(required = false) String name,
                              @RequestParam(required = false) String address,
                              @RequestParam(required = false) String opening,
                              @RequestParam(required = false) String closing,
                              @RequestParam(required = false) String website,
-                             @RequestParam(required = false) String phoneNumber
-    ) {
+                             @RequestParam(required = false) String phoneNumber)
+    {
         if (opening != null && !opening.isEmpty() && closing != null && !closing.isEmpty()) {
             String hours = String.format("%s-%s", opening, closing);
-            this.marketService.save(longitude, latitude, name, address, hours, website, phoneNumber);
+            this.marketService.save(id, longitude, latitude, name, address, hours, website, phoneNumber);
         } else
-            this.marketService.save(longitude, latitude, name, address, null, website, phoneNumber);
+            this.marketService.save(id,longitude, latitude, name, address, null, website, phoneNumber);
 
         return "redirect:/markets";
     }

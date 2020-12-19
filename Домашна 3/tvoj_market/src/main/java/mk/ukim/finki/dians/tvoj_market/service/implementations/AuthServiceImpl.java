@@ -4,15 +4,16 @@ import mk.ukim.finki.dians.tvoj_market.model.User;
 import mk.ukim.finki.dians.tvoj_market.model.exceptions.InvalidArgumentsException;
 import mk.ukim.finki.dians.tvoj_market.model.exceptions.InvalidUserCredentialsException;
 import mk.ukim.finki.dians.tvoj_market.repository.inmemory.InMemoryUserRepository;
+import mk.ukim.finki.dians.tvoj_market.repository.jpa.UserRepository;
 import mk.ukim.finki.dians.tvoj_market.service.AuthService;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AuthServiceImpl implements AuthService {
 
-    private final InMemoryUserRepository userRepository;
+    private final UserRepository userRepository;
 
-    public AuthServiceImpl(InMemoryUserRepository userRepository) {
+    public AuthServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

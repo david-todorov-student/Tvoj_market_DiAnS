@@ -9,6 +9,7 @@ import java.time.LocalTime;
 
 @Data
 @Entity
+@Table(name = "markets")
 public class Market {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +28,7 @@ public class Market {
 
     private String openingHours;
 
+    @Column(name = "website")
     private String webSite;
 
     private String phoneNumber;
@@ -35,7 +37,7 @@ public class Market {
     }
 
     public Market(double longitude, double latitude, String name, String address, String openingHours, String webSite, String phoneNumber) {
-        this.id = (long) (Math.random() * 1000);
+        //this.id = (long) (Math.random() * 1000);
         this.longitude = longitude;
         this.latitude = latitude;
         this.name = name;
