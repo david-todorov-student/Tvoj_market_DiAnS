@@ -1,0 +1,97 @@
+
+body{
+    background: #5C8DA5;
+    background-image: url("1 VEJVaGvij0Sh30UIhA5E-A.png");
+    background-repeat: no-repeat;
+}
+li{
+    float: left;
+    margin:60px;
+}
+ul{
+    list-style: none;
+    margin-left: 180px;
+    margin-bottom: -35px;
+    font-size: 25px;
+}
+.nav navbar-nav navbar-right{
+    margin-left:300px;
+}
+a{
+    text-decoration: none;
+    color: #122b40;
+}
+.navbar-brand{
+    font-size: 28px;
+    margin-left: 70px;
+    position: relative;
+    top:38px;
+}
+.nav-item.m-auto{
+    margin:20px;
+    margin-top:-30px;
+    height: 68px;
+}
+.navbar-nav.m-auto{
+    margin-left:220px;
+}
+.nav-item.btn{
+    margin-right:150px;
+}
+
+.btn.btn-light.btn-sm.ml-3{
+    font-size:17px;
+    margin-right:0;
+}
+.nav.navbar-nav.navbar-right li{
+    margin:10px;
+}
+.nav.navbar-nav.navbar-right{
+    margin-left: 1150px;
+}
+#buttons{
+    position: relative;
+    top:-30px;
+}
+#buttons .nav-item{
+    background: gainsboro;
+    width: 75px;
+    height:25px;
+    text-align: center;
+    padding-bottom:10px;
+    border: darkgray 2px solid;
+    border-radius: 8px;
+}
+#buttons .nav-item:hover{
+    background: silver;
+}
+#buttons .nav-item a{
+    color: #2e6da4;
+}
+.nav-item.m-auto{
+    border-left: 1px #122b40 solid;
+    padding-left: 40px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    font: bold;
+    font-family: Arial;
+}
+a.nav-link.active{
+    position: relative;
+    top: 40px;
+}
+html{
+    height:200px;
+}
+.nav-item.m-auto:last-child{
+    border-right: 1px #122b40 solid;
+    padding-right: 30px;
+}
+.nav-item.m-auto a:hover{
+    color: #5bc0de;
+}
+a{
+    font: bold;
+    font-family: Arial;
+}
