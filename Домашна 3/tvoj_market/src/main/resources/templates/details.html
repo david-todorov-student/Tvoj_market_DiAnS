@@ -1,15 +1,18 @@
+<link rel="stylesheet" href="../static/Details.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <div xmlns:th="http://www.thymeleaf.org">
 
     <th:block>
         <div class="container">
-            <h4>Market</h4>
-            <hr/>
-            <div class="row">
-                <div class="col-md-4">
+
+            <div class="row" id="roww">
+                <h1>Details.</h1>
+                <h2>Market</h2>
+                <div class="col-xs-6">
                     <dl class="dl-horizontal">
-                        <div class="row">
+                        <div>
                             <dt>
-                                <label>Longitude: </label>
+                                <label><b>Longitude: </b></label>
                             </dt>
 
                             <dd>
@@ -17,9 +20,9 @@
                             </dd>
                         </div>
 
-                        <div class="row">
+                        <div>
                             <dt>
-                                <label>Latitude: </label>
+                                <label><b>Latitude: </b></label>
                             </dt>
 
                             <dd>
@@ -27,9 +30,9 @@
                             </dd>
                         </div>
 
-                        <div class="row" th:if="${market.getName() != null}">
+                        <div>
                             <dt>
-                                <label>Name: </label>
+                                <label><b>Name: </b></label>
                             </dt>
 
                             <dd>
@@ -37,9 +40,9 @@
                             </dd>
                         </div>
 
-                        <div class="row" th:if="${market.getAddress() != null}">
+                        <div>
                             <dt>
-                                <label>Address: </label>
+                                <label><b>Address: </b></label>
                             </dt>
 
                             <dd>
@@ -47,9 +50,9 @@
                             </dd>
                         </div>
 
-                        <div class="row" th:if="${market.getOpeningHours() != null}">
+                        <div>
                             <dt>
-                                <label>Opening hours: </label>
+                                <label><b>Opening hours: </b></label>
                             </dt>
 
                             <dd>
@@ -57,19 +60,17 @@
                             </dd>
                         </div>
 
-                        <div class="row" th:if="${market.getWebSite() != null}">
+                        <div>
                             <dt>
-                                <label>Website: </label>
+                                <label><b>Website: </b></label>
                             </dt>
 
-                            <dd>
-                                <i><a th:href="${market.getWebSite()}">Go to site!</a></i>
-                            </dd>
+
                         </div>
 
-                        <div class="row" th:if="${market.getPhoneNumber() != null}">
+                        <div>
                             <dt>
-                                <label>Phone number: </label>
+                                <label><b>Phone number: </b></label>
                             </dt>
 
                             <dd>
@@ -79,10 +80,17 @@
 
                     </dl>
                 </div>
-                <div class="col-md-8">
-
+                <div class="col-xs-6">
+<!--                    <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"-->
+<!--                            src="https://www.openstreetmap.org/export/embed.html?bbox=21.280174255371094%2C41.966893394601335%2C21.440849304199222%2C42.05196946062722&amp;layer=mapnik"-->
+<!--                            style="border: 1px solid black">-->
+<!--                    </iframe>-->
+<!--                    <br/>-->
+<!--                    <small>-->
+<!--                        <a th:href="${'https://www.openstreetmap.org/#map=13/@Model.Latitude/@Model.Longitude'}">View Larger Map</a>-->
+<!--                    </small>-->
                     <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                            th:src="@{'https://www.openstreetmap.org/export/embed.html?bbox=21.32102966308594%2C41.951579641560215%2C21.481704711914062%2C42.03667617170297&amp;layer=mapnik&amp;marker={lat}%2C{lon}' (lat=${market.getLatitude()}, lon=${market.getLongitude()})}"
+                            src="https://www.openstreetmap.org/export/embed.html?bbox=21.32102966308594%2C41.951579641560215%2C21.481704711914062%2C42.03667617170297&amp;layer=mapnik&amp;marker=41.99414212858196%2C21.4013671875"
                             style="border: 1px solid black">
                     </iframe>
                     <br/>
@@ -92,21 +100,19 @@
                         </a>
                     </small>
 
-                </div>
-
-
             </div>
-            <p>
-                <a th:href="@{'/markets/edit-form/{id}' (id=${market.getId()})}" class="btn btn-sm btn-info">
-                    <i class="fa fa-trash">Edit</i>
-                </a>
-                <a th:href="@{'/markets/confirm-delete/{id}' (id=${market.getId()})}" class="btn btn-sm btn-danger">
-                    <i class="fa fa-trash">Delete</i>
-                </a>
-                <a type="button" class="btn btn-primary" href="/markets">Back</a>
 
-            </p>
+
         </div>
+        <p id="button">
+            <!--        @Html.ActionLink("Edit", "Edit", new {id = Model.Id}) |-->
+            <!--        @Html.ActionLink("Back to List", "Index")-->
+            <a th:href="@{'/markets/edit-form/{id}' (id=${market.getId()})}" class="btn btn-sm btn-info">
+                <i class="fa fa-trash">Edit</i>
+            </a>
+            <a type="button" class="btn btn-primary" href="/markets">Back</a>
+
+        </p>
     </th:block>
 
 </div>
