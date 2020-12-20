@@ -1,5 +1,6 @@
 package mk.ukim.finki.dians.tvoj_market.web.controllers;
 
+import mk.ukim.finki.dians.tvoj_market.model.enumerations.Role;
 import mk.ukim.finki.dians.tvoj_market.model.exceptions.InvalidArgumentsException;
 import mk.ukim.finki.dians.tvoj_market.model.exceptions.PasswordsDoNotMatchException;
 import mk.ukim.finki.dians.tvoj_market.service.AuthService;
@@ -38,13 +39,15 @@ public class RegisterController {
                            @RequestParam String password,
                            @RequestParam String repeatedPassword,
                            @RequestParam String name,
-                           @RequestParam String surname) {
+                           @RequestParam String surname,
+                           @RequestParam Role role) {
         try{
-            this.userService.register(username, password, repeatedPassword, name, surname);
+            this.userService.register(username, password, repeatedPassword, name, surname, role);
             return "redirect:/login";
         } catch (InvalidArgumentsException | PasswordsDoNotMatchException exception) {
             return "redirect:/register?error=" + exception.getMessage();
         }
     }
+
 }
 
