@@ -1,0 +1,113 @@
+<div xmlns:th="http://www.thymeleaf.org">
+    <th:block >
+        <section class="jumbotron text-center">
+            <div class="container">
+                <h1 class="jumbotron-heading">Твој Маркет</h1>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <form action="/markets/add" method="POST">
+                        <div class="form-group">
+                            <!--                            <label for="id">Id: </label>-->
+                            <input type="text"
+                                   class="form-control"
+                                   id="id"
+                                   hidden="hidden"
+                                   name="id"
+                                   th:value="(${market} != null ? ${market.getId} : '')"
+                                   placeholder="Enter market id">
+                        </div>
+                        <div class="form-group">
+                            <label for="lat">Latitude: </label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="lat"
+                                   name="latitude"
+                                   th:value="(${market} != null ? ${market.getLatitude()} : '')"
+                                   required
+                                   placeholder="Enter market latitude">
+                        </div>
+                        <div class="form-group">
+                            <label for="long">Longitude: </label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="long"
+                                   name="longitude"
+                                   th:value="(${market} != null ? ${market.getLongitude()} : '')"
+                                   required
+                                   placeholder="Enter market longitude">
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Market name</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="name"
+                                   name="name"
+                                   th:value="(${market} != null ? ${market.getName()} : '')"
+                                   required
+                                   placeholder="Enter market name">
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address: </label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="address"
+                                   name="address"
+                                   th:value="(${market} != null ? ${market.getAddress()} : '')"
+                                   required
+                                   placeholder="Enter market address">
+                        </div>
+                        <div class="form-group">
+                            <label for="opening">Opening hours: </label>
+                            <input type="time"
+                                   class="form-control"
+                                   id="opening"
+                                   name="opening"
+                                   th:value="(${market != null && market.getOpeningHours() != null} ? ${market.getOpeningHour()} : '')"
+                                   required
+                                   placeholder="Enter market opening hours">
+                        </div>
+                        <div class="form-group">
+                            <label for="closing">Closing hours: </label>
+                            <input type="time"
+                                   class="form-control"
+                                   id="closing"
+                                   name="closing"
+                                   th:value="(${market != null && market.getOpeningHours() != null} ? ${market.getClosingHour()} : '')"
+                                   required
+                                   placeholder="Enter market closing hours">
+                        </div>
+                        <div class="form-group">
+                            <label for="website">Website: </label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="website"
+                                   name="website"
+                                   th:value="(${market} != null ? ${market.getWebSite()} : '')"
+                                   required
+                                   placeholder="Enter market website">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number: </label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="phone"
+                                   name="phoneNumber"
+                                   th:value="(${market} != null ? ${market.getPhoneNumber()} : '')"
+                                   required
+                                   placeholder="Enter market phone number">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <a type="button" class="btn btn-primary" href="/markets">Back</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </th:block>
+</div>
