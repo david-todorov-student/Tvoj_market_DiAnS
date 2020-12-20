@@ -86,7 +86,6 @@
                             style="border: 1px solid black">
                     </iframe>
                     <br/>
-                    <!--            <a th:href="@{'/markets/edit-form/{id}' (id=${market.getId()})}" class="btn btn-sm btn-info"> -->
                     <small>
                         <a href="https://www.openstreetmap.org/?mlat=41.9941&amp;mlon=21.4014#map=13/41.9941/21.4014">
                             View Larger Map
@@ -98,8 +97,6 @@
 
             </div>
             <p>
-                <!--        @Html.ActionLink("Edit", "Edit", new {id = Model.Id}) |-->
-                <!--        @Html.ActionLink("Back to List", "Index")-->
                 <a th:href="@{'/markets/edit-form/{id}' (id=${market.getId()})}" class="btn btn-sm btn-info">
                     <i class="fa fa-trash">Edit</i>
                 </a>
