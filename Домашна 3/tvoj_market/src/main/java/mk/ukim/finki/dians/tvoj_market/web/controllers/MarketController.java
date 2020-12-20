@@ -3,6 +3,7 @@ package mk.ukim.finki.dians.tvoj_market.web.controllers;
 import mk.ukim.finki.dians.tvoj_market.model.Market;
 import mk.ukim.finki.dians.tvoj_market.model.exceptions.NoMarketsAreOpenException;
 import mk.ukim.finki.dians.tvoj_market.service.MarketService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -54,6 +55,7 @@ public class MarketController {
     }
 
     @GetMapping("/confirm-delete/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String getDeleteConfirmPage(@PathVariable Long id, Model model) {
         try {
             Market market = this.marketService.findById(id);
@@ -73,6 +75,7 @@ public class MarketController {
     }
 
     @GetMapping("/edit-form/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String editMarketPage(@PathVariable Long id, Model model) {
         try {
             Market market = this.marketService.findById(id);
@@ -85,6 +88,7 @@ public class MarketController {
     }
 
     @GetMapping("/add-form")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String addMarketPage(Model model) {
         model.addAttribute("bodyContent", "add-market");
         return "master-template";

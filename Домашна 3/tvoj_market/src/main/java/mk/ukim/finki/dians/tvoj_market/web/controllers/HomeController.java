@@ -21,9 +21,15 @@ public class HomeController {
         return "master-template";
     }
 
-    @GetMapping("contact")
+    @GetMapping("/contact")
     public String getContactPage(Model model){
         model.addAttribute("bodyContent", "contact");
+        return "master-template";
+    }
+
+    @GetMapping("access_denied")
+    public String getAccessDeniedPage(Model model){
+        model.addAttribute("bodyContent", "access-denied");
         return "master-template";
     }
 }
