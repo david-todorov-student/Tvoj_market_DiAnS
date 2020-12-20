@@ -27,7 +27,7 @@
                 <div class="col-md-5">
                     <form action="/markets/add" method="POST">
                         <div class="form-group">
-<!--                            <label for="id">Id: </label>-->
+                            <!--                            <label for="id">Id: </label>-->
                             <input type="text"
                                    class="form-control"
                                    id="id"
@@ -82,7 +82,7 @@
                                    class="form-control"
                                    id="opening"
                                    name="opening"
-                                   th:value="(${market} != null ? ${market.getOpeningHour().toString()} : '')"
+                                   th:value="(${market != null && market.getOpeningHours() != null} ? ${market.getOpeningHour()} : '')"
                                    required
                                    placeholder="Enter market opening hours">
                         </div>
@@ -92,7 +92,7 @@
                                    class="form-control"
                                    id="closing"
                                    name="closing"
-                                   th:value="(${market} != null ? ${market.getClosingHour().toString()} : '')"
+                                   th:value="(${market != null && market.getOpeningHours() != null} ? ${market.getClosingHour()} : '')"
                                    required
                                    placeholder="Enter market closing hours">
                         </div>

@@ -27,7 +27,7 @@
                             </dd>
                         </div>
 
-                        <div class="row">
+                        <div class="row" th:if="${market.getName() != null}">
                             <dt>
                                 <label>Name: </label>
                             </dt>
@@ -37,7 +37,7 @@
                             </dd>
                         </div>
 
-                        <div class="row">
+                        <div class="row" th:if="${market.getAddress() != null}">
                             <dt>
                                 <label>Address: </label>
                             </dt>
@@ -47,7 +47,7 @@
                             </dd>
                         </div>
 
-                        <div class="row">
+                        <div class="row" th:if="${market.getOpeningHours() != null}">
                             <dt>
                                 <label>Opening hours: </label>
                             </dt>
@@ -57,7 +57,7 @@
                             </dd>
                         </div>
 
-                        <div class="row">
+                        <div class="row" th:if="${market.getWebSite() != null}">
                             <dt>
                                 <label>Website: </label>
                             </dt>
@@ -67,7 +67,7 @@
                             </dd>
                         </div>
 
-                        <div class="row">
+                        <div class="row" th:if="${market.getPhoneNumber() != null}">
                             <dt>
                                 <label>Phone number: </label>
                             </dt>
@@ -102,6 +102,9 @@
                 <!--        @Html.ActionLink("Back to List", "Index")-->
                 <a th:href="@{'/markets/edit-form/{id}' (id=${market.getId()})}" class="btn btn-sm btn-info">
                     <i class="fa fa-trash">Edit</i>
+                </a>
+                <a th:href="@{'/markets/confirm-delete/{id}' (id=${market.getId()})}" class="btn btn-sm btn-danger">
+                    <i class="fa fa-trash">Delete</i>
                 </a>
                 <a type="button" class="btn btn-primary" href="/markets">Back</a>
 
