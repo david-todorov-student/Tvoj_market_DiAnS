@@ -60,6 +60,7 @@ public class MarketServiceImpl implements MarketService {
     @Override
     public List<Market> findOpened() {
         List<Market> opened = this.marketRepository.findAll().stream()
+                .filter(market -> market.getOpeningHours() != null)
                 .filter(market -> market.getOpeningHour().isBefore(LocalTime.now())
                         && market.getClosingHour().isAfter(LocalTime.now()))
                 .collect(Collectors.toList());
