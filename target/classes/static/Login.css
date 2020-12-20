@@ -1,0 +1,65 @@
+.container{
+    background-image: url("app background.jpg");
+    background-repeat: no-repeat;
+    height: 800px;
+}
+form{
+    background: whitesmoke;
+    opacity: 0.7;
+    height: 400px;
+    width: 1200px;
+    margin: auto;
+    padding-top: 100px;
+    position: relative;
+    top:140px;
+    border-radius: 40px;
+}
+h1{
+    font-family: Arial;
+    font-size: 35px;
+    color: #204d74;
+    border-bottom: gray 2px solid;
+    padding-bottom: 25px;
+    position: relative;
+    top:-100px;
+    padding-left: 25px;
+}
+h2{
+    font-size:20px;
+    color:#204d74;
+    position: relative;
+    bottom:150px;
+    left:27px;
+}
+#login{
+    position: relative;
+    left:450px;
+    bottom:80px;
+    color: #204d74;
+    font-family: Arial;
+}
+button{
+    color: #2e6da4;
+    padding: 5px;
+    position: relative;
+    left:86px;
+    bottom:15px;
+    border-radius: 5px;
+    background:lightgray;
+    position: relative;
+    left:530px;
+    bottom: 80px;
+}
+input{
+    background: lightgray;
+    width:220px;
+}
+a{
+    color: #269abc;
+    text-decoration: none;
+    font-family: Arial;
+    font-size: 15px;
+    position:relative;
+    left: 550px;
+    bottom:80px;
+}

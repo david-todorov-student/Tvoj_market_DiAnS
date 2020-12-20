@@ -1,0 +1,117 @@
+<div xmlns:th="http://www.thymeleaf.org">
+
+    <th:block>
+        <div class="container">
+            <h4>Market</h4>
+            <hr/>
+            <div class="row">
+                <div class="col-md-4">
+                    <dl class="dl-horizontal">
+                        <div class="row">
+                            <dt>
+                                <label>Longitude: </label>
+                            </dt>
+
+                            <dd>
+                                <i><strong th:text="${market.getLongitude()}"></strong></i>
+                            </dd>
+                        </div>
+
+                        <div class="row">
+                            <dt>
+                                <label>Latitude: </label>
+                            </dt>
+
+                            <dd>
+                                <i><strong th:text="${market.getLatitude()}"></strong></i>
+                            </dd>
+                        </div>
+
+                        <div class="row" th:if="${market.getName() != null}">
+                            <dt>
+                                <label>Name: </label>
+                            </dt>
+
+                            <dd>
+                                <i><strong th:text="${market.getName()}"></strong></i>
+                            </dd>
+                        </div>
+
+                        <div class="row" th:if="${market.getAddress() != null}">
+                            <dt>
+                                <label>Address: </label>
+                            </dt>
+
+                            <dd>
+                                <i><strong th:text="${market.getAddress()}"></strong></i>
+                            </dd>
+                        </div>
+
+                        <div class="row" th:if="${market.getOpeningHours() != null}">
+                            <dt>
+                                <label>Opening hours: </label>
+                            </dt>
+
+                            <dd>
+                                <i><strong th:text="${market.getOpeningHours()}"></strong></i>
+                            </dd>
+                        </div>
+
+                        <div class="row" th:if="${market.getWebSite() != null}">
+                            <dt>
+                                <label>Website: </label>
+                            </dt>
+
+                            <dd>
+                                <i><a th:href="${market.getWebSite()}">Go to site!</a></i>
+                            </dd>
+                        </div>
+
+                        <div class="row" th:if="${market.getPhoneNumber() != null}">
+                            <dt>
+                                <label>Phone number: </label>
+                            </dt>
+
+                            <dd>
+                                <i><strong th:text="${market.getPhoneNumber()}"></strong></i>
+                            </dd>
+                        </div>
+
+                    </dl>
+                </div>
+                <div class="col-md-8">
+
+                    <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                            th:src="@{'https://www.openstreetmap.org/export/embed.html?bbox=21.32102966308594%2C41.951579641560215%2C21.481704711914062%2C42.03667617170297&amp;layer=mapnik&amp;marker={lat}%2C{lon}' (lat=${market.getLatitude()}, lon=${market.getLongitude()})}"
+                            style="border: 1px solid black">
+                    </iframe>
+                    <br/>
+                    <small>
+                        <a href="https://www.openstreetmap.org/?mlat=41.9941&amp;mlon=21.4014#map=13/41.9941/21.4014">
+                            View Larger Map
+                        </a>
+                    </small>
+
+                </div>
+
+
+            </div>
+            <p>
+                <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                    <a th:href="@{'/markets/edit-form/{id}' (id=${market.getId()})}" class="btn btn-sm btn-info">
+                        <i class="fa fa-trash">Edit</i>
+                    </a>
+                </th:block>
+                <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+
+                    <a th:href="@{'/markets/confirm-delete/{id}' (id=${market.getId()})}" class="btn btn-sm btn-danger">
+                        <i class="fa fa-trash">Delete</i>
+                    </a>
+                </th:block>
+                <a type="button" class="btn btn-primary" href="/markets">Back</a>
+
+            </p>
+        </div>
+    </th:block>
+
+</div>
