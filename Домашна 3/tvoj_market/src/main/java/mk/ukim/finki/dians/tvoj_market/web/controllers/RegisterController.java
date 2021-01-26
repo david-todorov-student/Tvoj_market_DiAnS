@@ -44,7 +44,7 @@ public class RegisterController {
         try{
             this.userService.register(username, password, repeatedPassword, name, surname, role);
             return "redirect:/login";
-        } catch (InvalidArgumentsException | PasswordsDoNotMatchException exception) {
+        } catch (Exception exception) {
             return "redirect:/register?error=" + exception.getMessage();
         }
     }
