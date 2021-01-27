@@ -1,6 +1,6 @@
 <div xmlns:th="http://www.thymeleaf.org">
     <div class="container">
-        <h1 th:if="${hasError}" th:text="${error}"></h1>
+        <h1 th:if="${error != null}" th:text="${error}"></h1>
     </div>
     <div class="container">
         <form class="form-signin mt-xl-5" method="post" action="/register">
