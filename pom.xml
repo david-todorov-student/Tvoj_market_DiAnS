@@ -79,7 +79,7 @@
                 </configuration>
             </plugin>
         </plugins>
-        <finalName>tvoj-market</finalName>
+        <finalName>tvoj-market-docker</finalName>
     </build>
 
 </project>
