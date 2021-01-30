@@ -1,4 +1,4 @@
 FROM openjdk:8
-ADD target/tvoj-market.jar tvoj-market.jar
+ADD target/tvoj-market-docker.jar tvoj-market-docker.jar
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "tvoj-market.jar"]
+ENTRYPOINT ["java", "-jar", "tvoj-market-docker.jar"]
